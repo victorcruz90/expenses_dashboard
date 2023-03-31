@@ -2,7 +2,7 @@ from dash import Dash, html, dash_table
 from dash.dash_table import FormatTemplate
 
 
-def render(app: Dash, data) -> html.Div:
+def render(app: Dash, data):
     money = FormatTemplate.money(2)
 
     return html.Div(

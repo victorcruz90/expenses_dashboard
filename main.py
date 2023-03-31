@@ -18,8 +18,7 @@ def main():
 
     ALL_DATA = 'expenses_filtered_2023.csv'
     # Load bills table data
-    bills_data = load_bills_data(BILLS_FILE_PATH)
-
+   
      # This section will try to run
     if len(os.listdir(FOLDER_RAW)) > 1:
         # Merge and save filtered data
@@ -29,9 +28,12 @@ def main():
             if file.endswith('.csv'):
                 os.remove(os.path.join(FOLDER_RAW, file))
 
+    # Load bills data
+    bills_data = load_bills_data(BILLS_FILE_PATH)
+
     # Load and Group Data
-    data_expense = expenses_date(os.path.join(FOLDER_PROCESSED, ALL_DATA))
-    processed_fort_data, processed_cat_data  = group_data(os.path.join(FOLDER_PROCESSED, ALL_DATA))
+    
+    processed_fort_data, processed_cat_data, data_expense  = group_data(os.path.join(FOLDER_PROCESSED, ALL_DATA))
     
 
     # Current Fornight balance and Amount saved in 2023

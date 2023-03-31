@@ -11,7 +11,7 @@ def get_data(path):
         df = pd.DataFrame(columns=['Date', 'Amount', 'Transaction Type', 'Transaction Details', 'Category', 'Merchant Name'])
     return df.to_dict('records')
 
-def render(app: Dash, data, path) -> html.Div:
+def render(app: Dash, data, path):
     @app.callback(
         Output('expenses', 'data'),
         [Input('save-button', 'n_clicks')],

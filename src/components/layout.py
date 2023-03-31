@@ -55,13 +55,12 @@ def create_layout(app : Dash, data_bills, bar_charts, data_expenses, path, fortn
     card_four = dbc.Card(
         dbc.CardBody([
             html.P('Fortnight Expenditure', id='bar-chart-header'),
-            html.Div(bar_chart.render(app, bar_charts), id='bar-chart')],
+            bar_chart.render(app, bar_charts)]),
             style={'height': 'auto',
                'witdh': 'auto'}, 
-        ), 
-        id='card-four'
-    )
-
+        id='card-four')
+    
+    
     card_five = dbc.Card([
         dbc.CardBody([
             html.P('List of Expenses', id='expenses-header'),

@@ -38,13 +38,9 @@ def group_data(path: str):
 
     data = pd.read_csv(path, header=0,parse_dates=['Date'], dtype={'Amount': float})
     df_grouped = data.groupby([pd.Grouper(key='Date', freq='2W-WED', closed='left', label='left')]).sum(numeric_only=True).reset_index()
-    data = data.groupby([pd.Grouper(key='Date', freq='2W-WED', closed='left', label='left'), "Category"]).sum(numeric_only=True).reset_index()
-    return df_grouped, data
-
-def expenses_date(path):
-    data = pd.read_csv(path, header=0,parse_dates=['Date'], dtype={'Amount': float})
+    data1 = data.groupby([pd.Grouper(key='Date', freq='2W-WED', closed='left', label='left'), "Category"]).sum(numeric_only=True).reset_index()
     
-    return data
+    return df_grouped, data1, data
 
 def current_fornight_balance(data_bills: pd, processed_data: pd, victor_balance, rebecca_balance, fort_amount):
 
