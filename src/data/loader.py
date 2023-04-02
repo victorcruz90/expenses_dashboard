@@ -34,8 +34,10 @@ def merge_data_from_files(path0: str, path1: str):
     df_final = pd.concat(list_of_df, ignore_index=True, axis=0).sort_values(by=['Date'], ascending=True).drop_duplicates()
     df_final.to_csv(path1, mode='a', index=False)   
 
-def group_data(path: str):
+    #Load the expenses data after merging and cleaning to return as Dataframe from path1
 
+def group_data(path: str):
+    #This 
     data = pd.read_csv(path, header=0,parse_dates=['Date'], dtype={'Amount': float})
     df_grouped = data.groupby([pd.Grouper(key='Date', freq='2W-WED', closed='left', label='left')]).sum(numeric_only=True).reset_index()
     data1 = data.groupby([pd.Grouper(key='Date', freq='2W-WED', closed='left', label='left'), "Category"]).sum(numeric_only=True).reset_index()
