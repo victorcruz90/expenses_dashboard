@@ -26,7 +26,7 @@
 
 }
 
-#bills-header, #current-balance-header, #save-amount-header, #bar-chart-header, #expenses-header, #balance-text, #year-text {
+#bills-header, #current-balance-header, #save-amount-header, #bar-chart-header, #expenses-header, #balance-text, #year-saving-text {
     font-family: Arial, Helvetica, sans-serif; /* Choose a font that is appropriate for your website */
     font-style: normal;
     text-align: center; /* Horizontal centering */

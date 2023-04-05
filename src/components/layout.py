@@ -1,10 +1,10 @@
 from dash import Dash, html
 import plotly.express as px
-from src.components import bills_table, bar_chart, expenses_table
+from src.components import current_fornight, bar_chart, expenses_table, bills_table, year_saving
 import dash_bootstrap_components as dbc
 from src.data import loader
 
-def create_layout(app : Dash, data_bills, bar_charts, data_expenses, path, fortnight_balance, year_saving) -> html.Div:
+def create_layout(app : Dash, data_bills, data_expenses, path) -> html.Div:
 
     # Table with bills
     card_one = dbc.Card([
@@ -23,11 +23,13 @@ def create_layout(app : Dash, data_bills, bar_charts, data_expenses, path, fortn
         dbc.CardBody([
             html.P('Current Fornight Balance', id='current-balance-header'),
             html.P(
-                [html.I(f' AUD {fortnight_balance:.2f}',
-                className='fas fa-money-bill-wave' if fortnight_balance >= 0 else 'fas fa-exclamation-triangle',
-                style={'color': 'green' if fortnight_balance >= 0 else 'red'})], 
-                id='balance-text'
-                )
+                current_fornight.render(app, data_expenses, data_bills))
+                
+                # [html.I(f' AUD {fortnight_balance:.2f}',
+                # className='fas fa-money-bill-wave' if fortnight_balance >= 0 else 'fas fa-exclamation-triangle',
+                # style={'color': 'green' if fortnight_balance >= 0 else 'red'})], 
+                # id='balance-text'
+                
         ],
         style={'height': 'auto',
                 'witdh': 'auto',
@@ -39,12 +41,13 @@ def create_layout(app : Dash, data_bills, bar_charts, data_expenses, path, fortn
     card_three = dbc.Card([
         dbc.CardBody([
             html.P('Amount Saved in 2023', id='save-amount-header'),
-            html.P(
-                [html.I(f' AUD {year_saving:.2f}',
-                className='fas fa-money-bill-wave' if year_saving >= 0 else 'fas fa-exclamation-triangle',
-                style={'color': 'green' if year_saving >= 0 else 'red'})], 
-                id='year-text'
-                )
+            year_saving.render(app, data_expenses, data_bills)
+            # html.P(
+            #     [html.I(f' AUD someshing',
+            #     className='fas fa-money-bill-wave' if year_saving >= 0 else 'fas fa-exclamation-triangle',
+            #     style={'color': 'green' if year_saving >= 0 else 'red'})], 
+            #     id='year-text'
+            #     )
             ],
             style={'height': 'auto',
                'witdh': 'auto'})
@@ -55,7 +58,7 @@ def create_layout(app : Dash, data_bills, bar_charts, data_expenses, path, fortn
     card_four = dbc.Card(
         dbc.CardBody([
             html.P('Fortnight Expenditure', id='bar-chart-header'),
-            bar_chart.render(app, bar_charts)]),
+            bar_chart.render(app, data_expenses)]),
             style={'height': 'auto',
                'witdh': 'auto'}, 
         id='card-four')

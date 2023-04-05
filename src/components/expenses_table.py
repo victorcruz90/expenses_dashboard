@@ -4,33 +4,32 @@ from dash.dependencies import Output, Input, State
 import pandas as pd
 import dash
 
-def get_data(path):
-    try:
-        df = pd.read_csv(path)
-    except pd.errors.EmptyDataError:
-        df = pd.DataFrame(columns=['Date', 'Amount', 'Transaction Type', 'Transaction Details', 'Category', 'Merchant Name'])
-    return df.to_dict('records')
+# def get_data(path):
+#     try:
+#         df = pd.read_csv(path, he)
+#     except pd.errors.EmptyDataError:
+#         df = pd.DataFrame(columns=['Date', 'Amount', 'Transaction Type', 'Transaction Details', 'Category', 'Merchant Name'])
+#     return df.to_dict('records')
 
 def render(app: Dash, data, path):
     @app.callback(
         Output('expenses', 'data'),
-        [Input('save-button', 'n_clicks')],
-        [State('expenses', 'data'),
-         State('expenses', 'persistence')])
-    def update_data(n_clicks, rows, persistence):
+        Input('save-button', 'n_clicks'),
+        State('expenses', 'data'))
+    def update_data(n_clicks, rows):
         if dash.callback_context.triggered[0]['prop_id'] == 'save-button.n_clicks':
             # This callback is triggered by the save button, so update the data
             df = pd.DataFrame(rows)
             df.to_csv(path, mode='w', index=False)
-        elif not persistence:
-            # This callback is triggered by the 'persistence' property, and there is no saved data
-            df = get_data(path)
+        # elif not persistence:
+        #     # This callback is triggered by the 'persistence' property, and there is no saved data
+        #     df = get_data(path)
         else:
             # This callback is triggered by the 'persistence' property, and there is saved data
             df = pd.read_csv(path)
         return df.to_dict('records')
 
-    rows =data.to_dict('records')
+    rows=data.to_dict('records')
     money = FormatTemplate.money(2)
 
     
