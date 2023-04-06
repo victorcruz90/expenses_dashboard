@@ -20,7 +20,7 @@ def render(app: Dash, data: pd) -> html.Div:
 
 
         #Ploting the graph
-        fig = px.histogram(data1, x='Date', y='Amount',color='Category', color_discrete_sequence=px.colors.sequential.thermal, text_auto=True)
+        fig = px.histogram(data1, x='Date', y='Amount',color='Category', color_discrete_sequence=px.colors.sequential.speed, text_auto='.2f')
         fig.update_layout(
             paper_bgcolor='rgba(0,0,0,0)',
             plot_bgcolor='rgba(0,0,0,0)', 

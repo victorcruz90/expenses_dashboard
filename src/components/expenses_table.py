@@ -69,6 +69,7 @@ def render(app: Dash, data, path):
                 editable=True,
                 row_deletable=True,
                 filter_action='native',
+                filter_options={'case':'insensitive'},
                 page_action='native',
                 page_size=10,
                 sort_action='native',

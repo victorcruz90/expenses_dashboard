@@ -17,9 +17,11 @@ def main():
     FOLDER_RAW = './data/raw/'
 
     ALL_DATA = 'expenses_filtered_2023.csv'
+
+    ALL_DATA_ORIGINAL = 'expenses_filtered_2023_original.csv'
                 
     # Merge data and check whether it has new files
-    data_expense = merge_data_from_files(FOLDER_RAW, os.path.join(FOLDER_PROCESSED, ALL_DATA))
+    data_expense = merge_data_from_files(FOLDER_RAW, os.path.join(FOLDER_PROCESSED, ALL_DATA), os.path.join(FOLDER_PROCESSED, ALL_DATA_ORIGINAL))
     
     # Load bills data
     bills_data = load_bills_data(BILLS_FILE_PATH)
@@ -28,7 +30,7 @@ def main():
     app = Dash(__name__, external_stylesheets=[dbc.themes.MORPH])
     app.title = "Expenses Dashboard"
     app.layout= create_layout(app, bills_data, data_expense, os.path.join(FOLDER_PROCESSED,ALL_DATA))
-    app.run(debug=True)
+    app.run(host='0.0.0.0',debug=True)
 
 
 if __name__ == "__main__":

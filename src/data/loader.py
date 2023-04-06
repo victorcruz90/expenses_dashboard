@@ -8,7 +8,7 @@ def load_bills_data(path : str) -> pd.DataFrame:
         
     return data
 
-def merge_data_from_files(path0: str, path1: str): 
+def merge_data_from_files(path0: str, path1: str, path2: str): 
     # List of file paths to be imported
 
     list_files_paths = [os.path.join(path0, filename) for filename in os.listdir(path0) if filename.endswith('.csv')]
@@ -36,12 +36,13 @@ def merge_data_from_files(path0: str, path1: str):
 
         # Save data into path1
         df_final = pd.concat(list_of_df, ignore_index=True, axis=0).sort_values(by=['Date'], ascending=True).drop_duplicates()
-        df_final.to_csv(path1, mode='a', index=False) 
+        df_final.to_csv(path1, mode='a', index=False, header=False)
+        df_final.to_csv(path2, mode='a', index=False, header=False)
 
     #Load the expenses data after merging and cleaning to return as Dataframe from path1
     df_all = pd.read_csv(path1, header=0,
                 usecols=['Date', 'Amount', "Transaction Type", 'Transaction Details', 'Category', 'Merchant Name'],
-                parse_dates=['Date'], ) 
+                parse_dates=['Date']) 
 
 
     return df_all
