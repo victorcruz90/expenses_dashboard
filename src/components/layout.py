@@ -4,19 +4,19 @@ from src.components import current_fornight, bar_chart, expenses_table, bills_ta
 import dash_bootstrap_components as dbc
 from src.data import loader
 
-def create_layout(app : Dash, data_bills, data_expenses, path) -> html.Div:
+def create_layout(app : Dash, data_expenses, path) -> html.Div:
 
     # Table with bills
-    card_one = dbc.Card([
-        dbc.CardBody([
-            html.P('List of Bills', id='bills-header'),
-            bills_table.render(app, data_bills)
-        ],
-        style={'height': 'auto',
-               'witdh': 'auto'
-               }
-        )],
-        id='card-one')
+    # card_one = dbc.Card([
+    #     dbc.CardBody([
+    #         html.P('List of Bills', id='bills-header'),
+    #         bills_table.render(app, data_bills)
+    #     ],
+    #     style={'height': 'auto',
+    #            'witdh': 'auto'
+    #            }
+    #     )],
+        # id='card-one')
 
     # Fortnight balance 
     card_two = dbc.Card([
@@ -88,8 +88,8 @@ def create_layout(app : Dash, data_bills, data_expenses, path) -> html.Div:
             ]),
         html.Br(),
         dbc.Row([card_five]),
-        html.Br(),
-        dbc.Row([card_one])
+        # html.Br(),
+        # dbc.Row([card_one])
         ], className='main-div'
     )
 

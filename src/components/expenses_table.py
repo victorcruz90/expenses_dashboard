@@ -71,7 +71,7 @@ def render(app: Dash, data, path):
                 filter_action='native',
                 filter_options={'case':'insensitive'},
                 page_action='native',
-                page_size=10,
+                page_size=20,
                 sort_action='native',
                 persistence=True,
                 persisted_props=['data'],

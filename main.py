@@ -10,7 +10,7 @@ import os
 
 def main():
     # Variables
-    BILLS_FILE_PATH = './data/processed/Bills.csv'
+    # BILLS_FILE_PATH = './data/processed/Bills.csv'
 
     FOLDER_PROCESSED = './data/processed/'
 
@@ -24,12 +24,12 @@ def main():
     data_expense = merge_data_from_files(FOLDER_RAW, os.path.join(FOLDER_PROCESSED, ALL_DATA), os.path.join(FOLDER_PROCESSED, ALL_DATA_ORIGINAL))
     
     # Load bills data
-    bills_data = load_bills_data(BILLS_FILE_PATH)
+    # bills_data = load_bills_data(BILLS_FILE_PATH)
 
     # Section to run the app
     app = Dash(__name__, external_stylesheets=[dbc.themes.MORPH])
     app.title = "Expenses Dashboard"
-    app.layout= create_layout(app, bills_data, data_expense, os.path.join(FOLDER_PROCESSED,ALL_DATA))
+    app.layout= create_layout(app, data_expense, os.path.join(FOLDER_PROCESSED,ALL_DATA))
     app.run(host='0.0.0.0',debug=True)
 
 
