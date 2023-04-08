@@ -23,7 +23,7 @@ def create_layout(app : Dash, data_bills, data_expenses, path) -> html.Div:
         dbc.CardBody([
             html.P('Current Fornight Balance', id='current-balance-header'),
             html.P(
-                current_fornight.render(app, data_expenses, data_bills))
+                current_fornight.render(app, data_expenses))
                 
                 # [html.I(f' AUD {fortnight_balance:.2f}',
                 # className='fas fa-money-bill-wave' if fortnight_balance >= 0 else 'fas fa-exclamation-triangle',
@@ -41,7 +41,7 @@ def create_layout(app : Dash, data_bills, data_expenses, path) -> html.Div:
     card_three = dbc.Card([
         dbc.CardBody([
             html.P('Amount Saved in 2023', id='save-amount-header'),
-            year_saving.render(app, data_expenses, data_bills)
+            year_saving.render(app, data_expenses)
             # html.P(
             #     [html.I(f' AUD someshing',
             #     className='fas fa-money-bill-wave' if year_saving >= 0 else 'fas fa-exclamation-triangle',

@@ -20,15 +20,15 @@ def merge_data_from_files(path0: str, path1: str, path2: str):
             df = pd.read_csv(file_path, 
                     header=0,
                     usecols=['Date', 'Amount', "Transaction Type", 'Transaction Details', 'Category', 'Merchant Name'],
-                    parse_dates=['Date'], 
+                    parse_dates=['Date']
                 )
             # Filter the data from that dataFrame
             # Convert negative values into positive
-            df['Amount'] = df['Amount'].abs()
+            # df['Amount'] = df['Amount'].abs()
             # Remove irrelevant transactions for the calculation
-            df = df.query('Category != ["Transfers in","Bills", "Other income", "Transfers out", "Internal transfers", "Income"]').fillna('No detail')
+            df = df.query('Category != ["Internal transfers"]').fillna('No detail')
             # Remove Morgage payment categorised as home
-            df = df.query('Amount != 1100')
+            # df = df.query('Amount != 1100')
 
             list_of_df.append(df)
             if file_path.endswith('.csv'):
@@ -41,7 +41,6 @@ def merge_data_from_files(path0: str, path1: str, path2: str):
 
     #Load the expenses data after merging and cleaning to return as Dataframe from path1
     df_all = pd.read_csv(path1, header=0,
-                usecols=['Date', 'Amount', "Transaction Type", 'Transaction Details', 'Category', 'Merchant Name'],
                 parse_dates=['Date']) 
 
 
