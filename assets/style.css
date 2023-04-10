@@ -35,3 +35,7 @@
     font-weight: bold; /* Use bold font to make headings stand out */
 
 }
+
+.Select-menu-outer {
+    display : block !important;
+    }

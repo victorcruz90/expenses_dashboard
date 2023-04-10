@@ -43,7 +43,7 @@ def render(app: Dash, data, path):
                     dict(id="Amount",name="Amount",type="numeric",format=money),
                     dict(id="Transaction Type", name="Transaction Type"),
                     dict(id="Transaction Details", name="Transation Details"),
-                    dict(id='Category', name='Category'),
+                    dict(id='Category', name='Category', presentation='dropdown'),
                     dict(id='Merchant Name', name='Merchant Name')
                 ],
                 style_cell={"textAlign": "left"},
@@ -67,6 +67,13 @@ def render(app: Dash, data, path):
                 },
                 
                 editable=True,
+                dropdown={
+                    'Category': {
+                        'options': [
+                             {'label': i, 'value': i}
+                                for i in data['Category'].unique()
+                ]
+            }},
                 row_deletable=True,
                 filter_action='native',
                 filter_options={'case':'insensitive'},
@@ -75,7 +82,7 @@ def render(app: Dash, data, path):
                 sort_action='native',
                 persistence=True,
                 persisted_props=['data'],
-                persistence_type='local'
+                persistence_type='local',
                 )
         ],
         className="div-expenses-table",
