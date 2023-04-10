@@ -1,22 +1,19 @@
 from dash import Dash, html
 import plotly.express as px
-from src.components import current_fornight, bar_chart, expenses_table, bills_table, year_saving
+from src.components import current_fornight, bar_chart, expenses_table, year_saving, bar_chart_1
 import dash_bootstrap_components as dbc
 from src.data import loader
 
 def create_layout(app : Dash, data_expenses, path) -> html.Div:
 
     # Table with bills
-    # card_one = dbc.Card([
-    #     dbc.CardBody([
-    #         html.P('List of Bills', id='bills-header'),
-    #         bills_table.render(app, data_bills)
-    #     ],
-    #     style={'height': 'auto',
-    #            'witdh': 'auto'
-    #            }
-    #     )],
-        # id='card-one')
+    card_one = dbc.Card(
+        dbc.CardBody([
+        html.P('Expenses against Income', id='expense-vs-income-header'),
+        bar_chart_1.render(app, data_expenses)]),
+        style={'height': 'auto',
+               'witdh': 'auto'}, 
+        id='card-one')
 
     # Fortnight balance 
     card_two = dbc.Card([
@@ -57,7 +54,7 @@ def create_layout(app : Dash, data_expenses, path) -> html.Div:
     #  bar chart 
     card_four = dbc.Card(
         dbc.CardBody([
-            html.P('Fortnight Expenditure', id='bar-chart-header'),
+            html.P('Fortnight Expenditure per Category', id='bar-chart-header'),
             bar_chart.render(app, data_expenses)]),
             style={'height': 'auto',
                'witdh': 'auto'}, 
@@ -68,6 +65,7 @@ def create_layout(app : Dash, data_expenses, path) -> html.Div:
         dbc.CardBody([
             html.P('List of Expenses', id='expenses-header'),
             html.Button('Save', id ='save-button'),
+            html.Br(),
             expenses_table.render(app, data_expenses, path)
         ],
         style={'height': 'auto',
@@ -86,6 +84,8 @@ def create_layout(app : Dash, data_expenses, path) -> html.Div:
         dbc.Row([
             dbc.Col([card_four])
             ]),
+        html.Br(),
+        dbc.Row([card_one]),
         html.Br(),
         dbc.Row([card_five]),
         # html.Br(),
