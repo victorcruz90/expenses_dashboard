@@ -27,7 +27,7 @@ def render(app: Dash, data: pd) -> html.Div:
         fig = go.Figure()
 
         fig.add_trace(go.Bar(x=df_income["Date"], y=df_income['Amount'],
-        name = "Income", text = df_income["Amount"].round(2), textangle=0, textposition='outside', marker_color='#99ffeb'
+        name = "Income", text = df_income["Amount"].round(2), textangle=0, textposition='outside', marker_color='#6fdc6f'
         ))
 
         fig.add_trace(go.Bar(x=df_expense["Date"], y=df_expense['Amount'],
