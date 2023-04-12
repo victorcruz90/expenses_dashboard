@@ -52,14 +52,14 @@ def render(app: Dash, data, path):
                     "color": "black",
                     "font-family": "Arial, Helvetica, sans-serif",
                     "white-space": "normal",
-                    'background-color': 'rgb(191,239,181)',
+                    'background-color': '#e6f7ff',
                     'border': '2px solid black'
                 },
                 style_header={
                     "color": "black",
                     "font-family": "Arial, Helvetica, sans-serif",
                     "font-weight": "bold",
-                    'background-color': 'rgb(91,168,91)',
+                    'background-color': '#33bbff',
                     'border': '2px solid black'
                 },
                 style_table={

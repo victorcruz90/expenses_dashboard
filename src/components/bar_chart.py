@@ -16,7 +16,7 @@ def render(app: Dash, data: pd) -> html.Div:
         #filtering the data
         data = pd.DataFrame(rows)
         data['Date'] = pd.to_datetime(data['Date'])
-        data1= data.query('Amount <= 0')
+        data1= data.query('Amount <= 0').copy()
         data1['Amount'] = data1['Amount'].abs()
         data1 = data1.groupby([pd.Grouper(key='Date', freq='2W-WED', closed='left', label='left'), "Category"]).sum(numeric_only=True).reset_index()
        

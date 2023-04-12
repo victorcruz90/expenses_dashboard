@@ -18,7 +18,7 @@ def render(app: Dash, data: pd) -> html.Div:
         data['Date'] = pd.to_datetime(data['Date'])
         
         data1 = data.query('Amount >= 0').reset_index()
-        data2 = data.query('Amount <= 0').reset_index()
+        data2 = data.loc[data.Amount <= 0].copy()
         data2.Amount = data2.Amount.abs()
         df_expense = data2.groupby([pd.Grouper(key='Date', freq='2W-Wed', closed='left', label='left')]).sum(numeric_only=True).reset_index()
         df_income = data1.groupby([pd.Grouper(key='Date', freq='2W-Wed', closed='left', label='left')]).sum(numeric_only=True).reset_index()
