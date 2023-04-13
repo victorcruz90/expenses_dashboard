@@ -29,11 +29,11 @@ def render(app: Dash, data: pd) -> html.Div:
             xaxis_title_text='Fornight pay date', 
             yaxis_title_text='Total',
             font_family='Arial',
-            xaxis=dict(tickmode='array', tickvals= data1['Date'], ticktext = data1['Date'].apply(lambda x: x.strftime('%d-%b-%Y')),automargin=True),
+            xaxis=dict(tickmode='array', tickvals= data1['Date'], ticktext = data1['Date'].apply(lambda x: x.strftime('%d-%b-%Y')),automargin=True)
             ),
-        fig.update_yaxes(showgrid=False)
-        # fig.update_traces(text=f'{data1.Amount.sum()}')
-        # fig.update_xaxes(type='category')
+        fig.update_yaxes(showgrid=False, range=[0,7000], tickfont=dict(family='Arial', color='black', size=14))
+        fig.update_xaxes(tickfont=dict(family='Arial', color='black', size=14))
+        
         return html.Div(children=dcc.Graph(figure=fig), id='bar-chart')
     
 

@@ -1,7 +1,7 @@
 
 .main-div {
     padding: 40px;
-    background-image: linear-gradient(rgb(22, 113, 115) , rgb(75, 163, 125));
+    background: linear-gradient(to bottom, #00ffcc 0%, #33cc33 100%);
     
 }
 
@@ -17,7 +17,7 @@
 #card-one, #card-two, #card-three, #card-four, #card-five {
     border-radius: 20px;
     font: bold;
-    border-width: 4px;
+    border-width: 2px;
     background-image: radial-gradient(rgb(227, 238, 227), #d6f5d6) ;
     font-family: Arial, Helvetica, sans-serif;
     box-shadow: rgb(2, 10, 4) 0px 10px 50px;
@@ -27,12 +27,13 @@
 }
 
 #bills-header, #current-balance-header, #save-amount-header, #bar-chart-header, #expenses-header, #balance-text, #year-saving-text, #expense-vs-income-header{
-    font-family: Arial, Helvetica, sans-serif; /* Choose a font that is appropriate for your website */
-    font-style: normal;
-    text-align: center; /* Horizontal centering */
-    color: #333; /* Choose a color scheme that fits your website */
-    font-size: 40px;
-    font-weight: bold; /* Use bold font to make headings stand out */
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: bold;
+    text-transform: capitalize;
+    text-align: center;
+    font-size: 48px;
+    color: rgba(0, 0, 0, 0.64);
+    text-shadow: rgb(0, 0, 0) 2px 2px 2px;
 
 }
 

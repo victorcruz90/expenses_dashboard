@@ -27,11 +27,11 @@ def render(app: Dash, data: pd) -> html.Div:
         fig = go.Figure()
 
         fig.add_trace(go.Bar(x=df_income["Date"], y=df_income['Amount'],
-        name = "Income", text = df_income["Amount"].round(2), textangle=0, textposition='outside', marker_color='#6fdc6f'
+        name = "Income", text = df_income["Amount"].round(2), textangle=0, textposition='outside', marker_color='#6fdc6f', marker_line=dict(width=2, color='black')
         ))
 
         fig.add_trace(go.Bar(x=df_expense["Date"], y=df_expense['Amount'],
-        name = "Expenses", text = df_expense["Amount"].round(2), textangle=0, textposition='outside', marker_color='#ff6666'
+        name = "Expenses", text = df_expense["Amount"].round(2), textangle=0, textposition='outside', marker_color='#ff6666', marker_line=dict(width=2, color='black')
         ))
 
         
@@ -42,12 +42,12 @@ def render(app: Dash, data: pd) -> html.Div:
             plot_bgcolor='rgba(0,0,0,0)', 
             bargap=0.1,
             xaxis_title_text='Fornight pay date', 
-            yaxis_title_text='Total',
+            yaxis_title_text='Total in AUS$',
             font_family='Arial',
             xaxis=dict(tickmode='array', tickvals= df_expense['Date'], ticktext = df_expense['Date'].apply(lambda x: x.strftime('%d-%b-%Y')),automargin=True),
             )
-        fig.update_yaxes(showgrid=False)
-        
+        fig.update_yaxes(showgrid=False, range=[0,7000], tickfont=dict(family='Arial', color='black', size=14))
+        fig.update_xaxes(tickfont=dict(family='Arial', color='black', size=14))
         return html.Div(children=dcc.Graph(figure=fig), id='bar-chart_1')
     
 

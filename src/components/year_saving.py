@@ -20,7 +20,8 @@ def render(app: Dash, data: pd) -> html.Div:
         #Fornight Balance
         year_saving = data1['Amount'].sum()
         return html.I(children=f' AUD$ {year_saving:.2f}', className='fas fa-money-bill-wave' if year_saving >= 0 else 'fas fa-exclamation-triangle',
-                style={'color': 'green' if year_saving >= 0 else 'red'})
+                style={'color': 'green' if year_saving >= 0 else 'red', 
+                       })
      
 
 
