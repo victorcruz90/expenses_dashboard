@@ -1,6 +1,6 @@
 from dash import Dash, html
 import plotly.express as px
-from src.components import current_fornight, bar_chart, expenses_table, year_saving, bar_chart_1
+from src.components import current_fornight, bar_chart, expenses_table, year_saving, bar_chart_1, datarangepicker
 import dash_bootstrap_components as dbc
 from src.data import loader
 
@@ -20,12 +20,6 @@ def create_layout(app : Dash, data_expenses, path) -> html.Div:
         dbc.CardBody([
             html.P('Current Fornight Balance', id='current-balance-header'),
             html.P(current_fornight.render(app, data_expenses))
-                
-                # [html.I(f' AUD {fortnight_balance:.2f}',
-                # className='fas fa-money-bill-wave' if fortnight_balance >= 0 else 'fas fa-exclamation-triangle',
-                # style={'color': 'green' if fortnight_balance >= 0 else 'red'})], 
-                # id='balance-text'
-                
         ],
         style={'height': 'auto',
                 'witdh': 'auto',
@@ -38,12 +32,6 @@ def create_layout(app : Dash, data_expenses, path) -> html.Div:
         dbc.CardBody([
             html.P('Amount Saved in 2023', id='save-amount-header'),
             html.P(year_saving.render(app, data_expenses))
-            # html.P(
-            #     [html.I(f' AUD someshing',
-            #     className='fas fa-money-bill-wave' if year_saving >= 0 else 'fas fa-exclamation-triangle',
-            #     style={'color': 'green' if year_saving >= 0 else 'red'})], 
-            #     id='year-text'
-            #     )
             ],
             style={'height': 'auto',
                'witdh': 'auto'})
@@ -64,6 +52,8 @@ def create_layout(app : Dash, data_expenses, path) -> html.Div:
         dbc.CardBody([
             html.P('List of Expenses', id='expenses-header'),
             html.Button('Save', id ='save-button'),
+            html.Br(),
+            # datarangepicker.render(app,data_expenses),
             html.Br(),
             expenses_table.render(app, data_expenses, path)
         ],

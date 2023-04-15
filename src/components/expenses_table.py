@@ -4,29 +4,28 @@ from dash.dependencies import Output, Input, State
 import pandas as pd
 import dash
 
-# def get_data(path):
-#     try:
-#         df = pd.read_csv(path, he)
-#     except pd.errors.EmptyDataError:
-#         df = pd.DataFrame(columns=['Date', 'Amount', 'Transaction Type', 'Transaction Details', 'Category', 'Merchant Name'])
-#     return df.to_dict('records')
 
 def render(app: Dash, data, path):
     @app.callback(
         Output('expenses', 'data'),
         Input('save-button', 'n_clicks'),
+        # Input('date-range-picker', 'start_date'),
+        # Input('date-range-picker', 'end_date'),
         State('expenses', 'data'))
     def update_data(n_clicks, rows):
         if dash.callback_context.triggered[0]['prop_id'] == 'save-button.n_clicks':
             # This callback is triggered by the save button, so update the data
             df = pd.DataFrame(rows)
             df.to_csv(path, mode='w', index=False)
-        # elif not persistence:
-        #     # This callback is triggered by the 'persistence' property, and there is no saved data
-        #     df = get_data(path)
+
+        # elif dash.callback_context.triggered[0]['prop_id'] == 'data-range-picker.start_date':
+        #     # This callback is triggered by the 'persistence' property, and there is saved data
+        #     df = df.loc[(df['Date'] >= start_date) & (df['Date']<= end_date)]
         else:
-            # This callback is triggered by the 'persistence' property, and there is saved data
             df = pd.read_csv(path)
+        # if start_date and end_date:
+        #     # Filter the data based on the selected date range
+        #     df = df.loc[(df['Date'] >= start_date) & (df['Date']<= end_date)]
         return df.to_dict('records')
 
     rows=data.to_dict('records')

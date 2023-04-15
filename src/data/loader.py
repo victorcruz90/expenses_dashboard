@@ -1,13 +1,6 @@
 import pandas as pd
 import os
 
-def load_bills_data(path : str) -> pd.DataFrame:
-    data = pd.read_csv(path,header=0,dtype={"total_year": float})
-    data["total_fortnight"] = data['total_year']/26
-    data = data.round(2) 
-        
-    return data
-
 def merge_data_from_files(path0: str, path1: str, path2: str): 
     # List of file paths to be imported
 
@@ -15,7 +8,7 @@ def merge_data_from_files(path0: str, path1: str, path2: str):
     list_of_df = []
 
     #Import all the files and 
-    if len(os.listdir(path0)) > 1:
+    if len(list_files_paths) > 0:
         for file_path in list_files_paths:
             df = pd.read_csv(file_path, 
                     header=0,
