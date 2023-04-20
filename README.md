@@ -17,7 +17,7 @@ Install the required Python packages using the command pip install -r requiremen
 
 Ensure that the financial data CSV files are saved in the specified paths in the script.
 
-Run the script using the command python script.py.
+Run the script using the command python main.py.
 
 Access the web app via localhost in a browser session.
 
@@ -26,10 +26,20 @@ Access the web app via localhost in a browser session.
 
 The financial data that this script uses must follow a specific structure for proper processing, and the CSV files must be saved in specific paths. These requirements are specified in the script. It is important to ensure that the financial data CSV files match these requirements, or this code may not run correctly.
 
-# Current Issues
+# Issues
 
-1. Bar chart does not keep the updated value after datable edit and page reload.
+1. Bar chart does not keep the updated value after datable edit and page reload. (Solved)
 
-2. Current_fornight_balance and year_savings are not updating with the change in datatable.
+2. Current_fornight_balance and year_savings are not updating with the change in datatable.(Solved)
 
+3. DataTable is not connect to date range picker. Cannot filter data by date range.
+
+4. When selecting dropwdown dates, the updated graph has random gaps between the bins.
+
+
+# Current Developments
+
+1. add Dropdown to bar charts (In progress)
+
+2. Aggregate both bar charts to the same card in the dashboard.
 

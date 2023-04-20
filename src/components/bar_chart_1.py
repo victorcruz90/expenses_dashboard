@@ -46,7 +46,7 @@ def render(app: Dash, data: pd) -> html.Div:
             font_family='Arial',
             xaxis=dict(tickmode='array', tickvals= df_expense['Date'], ticktext = df_expense['Date'].apply(lambda x: x.strftime('%d-%b-%Y')),automargin=True),
             )
-        fig.update_yaxes(showgrid=False, range=[0,7000], tickfont=dict(family='Arial', color='black', size=14))
+        fig.update_yaxes(showgrid=False, range=[0,df_income.max(numeric_only=True)], tickfont=dict(family='Arial', color='black', size=14))
         fig.update_xaxes(tickfont=dict(family='Arial', color='black', size=14))
         return html.Div(children=dcc.Graph(figure=fig), id='bar-chart_1')
     

@@ -1,6 +1,6 @@
 from dash import Dash, html
 import plotly.express as px
-from src.components import current_fornight, bar_chart, expenses_table, year_saving, bar_chart_1, datarangepicker
+from src.components import current_fornight, bar_chart, expenses_table, year_saving, bar_chart_1, fortnight_dropdown
 import dash_bootstrap_components as dbc
 from src.data import loader
 
@@ -42,7 +42,13 @@ def create_layout(app : Dash, data_expenses, path) -> html.Div:
     card_four = dbc.Card(
         dbc.CardBody([
             html.P('Fortnight Expenditure per Category', id='bar-chart-header'),
-            bar_chart.render(app, data_expenses)]),
+            html.Br(),
+            fortnight_dropdown.render(app, data_expenses),
+            bar_chart.render(app, data_expenses),
+            # html.Br(),
+            # html.P('Expenses against Income', id='expense-vs-income-header'),
+            # bar_chart_1.render(app, data_expenses)
+            ]),
             style={'height': 'auto',
                'witdh': 'auto'}, 
         id='card-four')
@@ -51,9 +57,8 @@ def create_layout(app : Dash, data_expenses, path) -> html.Div:
     card_five = dbc.Card([
         dbc.CardBody([
             html.P('List of Expenses', id='expenses-header'),
-            html.Button('Save', id ='save-button'),
+            html.Button('Save', id='save-button', className='button'),
             html.Br(),
-            # datarangepicker.render(app,data_expenses),
             html.Br(),
             expenses_table.render(app, data_expenses, path)
         ],
@@ -74,11 +79,13 @@ def create_layout(app : Dash, data_expenses, path) -> html.Div:
             dbc.Col([card_four])
             ]),
         html.Br(),
-        dbc.Row([card_one]),
+        dbc.Row([
+            dbc.Col([card_one])
+        ]),
         html.Br(),
-        dbc.Row([card_five]),
-        # html.Br(),
-        # dbc.Row([card_one])
+        dbc.Row([
+            dbc.Col([card_five])
+        ]),
         ], className='main-div'
     )
 
