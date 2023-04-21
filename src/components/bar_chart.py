@@ -11,7 +11,7 @@ def render(app: Dash, data: pd) -> html.Div:
         Output('bar-chart', 'children'),
         Input('expenses', 'data'),
         Input('fortnight-dropdown', 'value')       )
-    def update_graph(rows, fornight_values: list):
+    def update_graph(rows, fortnight_values: list):
 
         #Grouping the data
         data = pd.DataFrame(rows)
@@ -21,8 +21,8 @@ def render(app: Dash, data: pd) -> html.Div:
         data1 = data1.groupby([pd.Grouper(key='Date', freq='2W-WED', closed='left', label='left'), "Category"]).sum(numeric_only=True).reset_index()
 
         #Filtering the data
-        if fornight_values: 
-            data2 = data1.query('Date == @fornight_values')
+        if fortnight_values: 
+            data2 = data1.query('Date in @fortnight_values')
             #Ploting the graph
             fig = px.histogram(data2, x='Date', y='Amount',color='Category', color_discrete_sequence=px.colors.qualitative.Dark24, text_auto='.2f')
             fig.update_layout(
@@ -30,16 +30,16 @@ def render(app: Dash, data: pd) -> html.Div:
                 plot_bgcolor='rgba(0,0,0,0)', 
                 bargap=0.3,
                 xaxis_title_text='Fornight pay date', 
-                yaxis_title_text='Total',
+                yaxis_title_text='Total in AUD$',
                 font_family='Arial',
-                xaxis=dict(tickmode='array', tickvals= data2['Date'], ticktext = data2['Date'].apply(lambda x: x.strftime('%d-%b-%Y')))
+                xaxis=dict(tickmode='array', tickvals= data2['Date'], ticktext = data2['Date'].apply(lambda x: x.strftime('%d-%b-%Y')),automargin=True)
                 ),
-            fig.update_yaxes(showgrid=False, range=[0,data1.max(numeric_only=True)], tickfont=dict(family='Arial', color='black', size=14))
-            fig.update_xaxes(tickfont=dict(family='Arial', color='black', size=14))
+            fig.update_yaxes(showgrid=False, range=[0,data1.max(numeric_only=True)], tickfont=dict(family='Arial', color='black', size=14),showline=True, linewidth=2, linecolor='black', mirror=False)
+            fig.update_xaxes(tickfont=dict(family='Arial', color='black', size=14),showline=True, linewidth=2, linecolor='black', mirror=False)
             return html.Div(children=dcc.Graph(figure=fig), id='bar-chart')
         
         else:
-            return html.Div("No data selected")
+            return html.Div("No data selected", className='no-data')
 
     return html.Div(id='bar-chart')
    

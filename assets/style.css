@@ -26,14 +26,33 @@
 
 }
 
+.no-data {
+  font-family: Arial, Helvetica, sans-serif;
+  text-align: center;
+  font-size: 54px;
+  color: rgb(2, 5, 0);
+  /* background-color: rgb(84, 84, 84); */
+
+}
+
+#dropdown-header {
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: bold;
+    text-transform: capitalize;
+    /* text-align: center; */
+    font-size: 25px;
+    color: 	#000000;
+    /* background-color: rgb(255, 255, 255); */
+}
+
 #bills-header, #current-balance-header, #save-amount-header, #bar-chart-header, #expenses-header, #balance-text, #year-saving-text, #expense-vs-income-header{
     font-family: Arial, Helvetica, sans-serif;
     font-weight: bold;
     text-transform: capitalize;
     text-align: center;
     font-size: 48px;
-    color: rgba(0, 0, 0, 0.64);
-    text-shadow: rgb(0, 0, 0) 2px 2px 2px;
+    color: rgba(0, 0, 0);
+    /* text-shadow: rgb(0, 0, 0) 0px 1px 13px; */
 
 }
 
@@ -41,15 +60,14 @@
     display : block !important;
     }
 
-
 /* CSS */
 .button {
   align-items: center;
-  background-color: #fee6e3;
+  background-color: #7bd3c9;
   border: 2px solid #111;
   border-radius: 8px;
   box-sizing: border-box;
-  color: #111;
+  color: #111111;
   cursor: pointer;
   display: flex;
   font-family: Inter,sans-serif;
@@ -99,4 +117,20 @@
   .button {
     padding: 0 40px;
   }
+}
+
+#fortnight-dropdown .Select-menu-outer{
+  background-color: #d6f5d6;
+  color: #000000;
+}
+
+#fortnight-dropdown .VirtualizedSelectFocusedOption {
+  background-color: #a5ecd1;
+  color: black;
+}
+
+#fortnight-dropdown {
+  margin-left: 20px;
+  margin-right: 20px;
+  margin-top: 5px;
 }
