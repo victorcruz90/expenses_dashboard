@@ -23,6 +23,7 @@ def render(app: Dash, data: pd) -> html.Div:
         #Filtering the data
         if fortnight_values: 
             data2 = data1.query('Date in @fortnight_values')
+            # data2 = data2.set_index('Date')
             #Ploting the graph
             fig = px.histogram(data2, x='Date', y='Amount',color='Category', color_discrete_sequence=px.colors.qualitative.Dark24, text_auto='.2f')
             fig.update_layout(
@@ -35,7 +36,7 @@ def render(app: Dash, data: pd) -> html.Div:
                 xaxis=dict(tickmode='array', tickvals= data2['Date'], ticktext = data2['Date'].apply(lambda x: x.strftime('%d-%b-%Y')),automargin=True)
                 ),
             fig.update_yaxes(showgrid=False, range=[0,data1.max(numeric_only=True)], tickfont=dict(family='Arial', color='black', size=14),showline=True, linewidth=2, linecolor='black', mirror=False)
-            fig.update_xaxes(tickfont=dict(family='Arial', color='black', size=14),showline=True, linewidth=2, linecolor='black', mirror=False)
+            fig.update_xaxes(type="category", tickfont=dict(family='Arial', color='black', size=14),showline=True, linewidth=2, linecolor='black', mirror=False)
             return html.Div(children=dcc.Graph(figure=fig), id='bar-chart')
         
         else:
