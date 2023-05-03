@@ -32,9 +32,11 @@ The financial data that this script uses must follow a specific structure for pr
 
 2. Current_fornight_balance and year_savings are not updating with the change in datatable.(Solved)
 
-3. DataTable is not connect to date range picker. Cannot filter data by date range. (Functionality postponed)
+3. DataTable is not connect to date range picker. Cannot filter data by date range. (Solved)
 
-4. When selecting dropwdown dates, the updated graph has random gaps between the bins.
+4. When selecting dropwdown dates, the updated graph has random gaps between the bins (Solved).
+
+5. Data range picker filter bar charts and overides the dropdown filtering. 
 
 
 # Current Developments

@@ -9,29 +9,29 @@ def render(app: Dash, data, path):
     @app.callback(
         Output('expenses', 'data'),
         Input('save-button', 'n_clicks'),
-        # Input('date-range-picker', 'start_date'),
-        # Input('date-range-picker', 'end_date'),
-        State('expenses', 'data'))
-    def update_data(n_clicks, rows):
-        if dash.callback_context.triggered[0]['prop_id'] == 'save-button.n_clicks':
+        Input('date-range-picker', 'start_date'),
+        Input('date-range-picker', 'end_date'),
+        State('expenses', 'data')
+        )
+    def update_data(n_clicks, start_date, end_date, rows):
+
+        df = pd.DataFrame(rows)
+        
+        if dash.callback_context.triggered_id == 'save-button':
             # This callback is triggered by the save button, so update the data
-            df = pd.DataFrame(rows)
+            # df = pd.DataFrame(rows)
             df.to_csv(path, mode='w', index=False)
 
-        # elif dash.callback_context.triggered[0]['prop_id'] == 'data-range-picker.start_date':
-        #     # This callback is triggered by the 'persistence' property, and there is saved data
-        #     df = df.loc[(df['Date'] >= start_date) & (df['Date']<= end_date)]
+        elif start_date and end_date: 
+            # This callback is triggered by the 'persistence' property, and there is saved data
+            df = df.loc[(df['Date'] >= start_date) & (df['Date']<= end_date)]
         else:
             df = pd.read_csv(path)
-        # if start_date and end_date:
-        #     # Filter the data based on the selected date range
-        #     df = df.loc[(df['Date'] >= start_date) & (df['Date']<= end_date)]
+        
         return df.to_dict('records')
 
     rows=data.to_dict('records')
     money = FormatTemplate.money(2)
-
-    
 
     return html.Div(
         children=[

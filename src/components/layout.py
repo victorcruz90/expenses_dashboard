@@ -1,6 +1,6 @@
 from dash import Dash, html
 import plotly.express as px
-from src.components import current_fornight, bar_chart, expenses_table, year_saving, bar_chart_1, fortnight_dropdown
+from src.components import current_fornight, bar_chart, expenses_table, year_saving, bar_chart_1, fortnight_dropdown, datarangepicker
 import dash_bootstrap_components as dbc
 from src.data import loader
 
@@ -59,6 +59,8 @@ def create_layout(app : Dash, data_expenses, path) -> html.Div:
             html.P('List of Expenses', id='expenses-header'),
             html.Button('Save', id='save-button', className='button'),
             html.Br(),
+            html.Br(),
+            datarangepicker.render(app, data_expenses),
             html.Br(),
             expenses_table.render(app, data_expenses, path)
         ],

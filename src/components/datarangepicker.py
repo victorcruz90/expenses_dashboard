@@ -14,6 +14,8 @@ def render(app: Dash, data: pd) -> html.Div:
         initial_visible_month=data['Date'].max(),
         start_date_placeholder_text= 'Select date',
         end_date_placeholder_text='Select date',
+        clearable=True,
+        show_outside_days=True
               
     )
         ])

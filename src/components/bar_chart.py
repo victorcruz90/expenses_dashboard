@@ -10,11 +10,12 @@ def render(app: Dash, data: pd) -> html.Div:
     @app.callback(
         Output('bar-chart', 'children'),
         Input('expenses', 'data'),
-        Input('fortnight-dropdown', 'value')       )
+        Input('fortnight-dropdown', 'value')
+        )
     def update_graph(rows, fortnight_values: list):
 
         #Grouping the data
-        data = pd.DataFrame(rows)
+        # data = pd.DataFrame(rows)
         data['Date'] = pd.to_datetime(data['Date'])
         data1= data.query('Amount <= 0').copy()
         data1['Amount'] = data1['Amount'].abs()

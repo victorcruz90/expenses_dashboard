@@ -15,7 +15,7 @@ def render(app: Dash, data: pd) -> html.Div:
     def update_graph(rows, fortnight_values: list):
 
         #filtering the data
-        data = pd.DataFrame(rows)
+        # data = pd.DataFrame(rows)
         data['Date'] = pd.to_datetime(data['Date'])
         
         data1= data.query('Amount > 0')
