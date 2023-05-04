@@ -36,7 +36,7 @@ The financial data that this script uses must follow a specific structure for pr
 
 4. When selecting dropwdown dates, the updated graph has random gaps between the bins (Solved).
 
-5. Data range picker filter bar charts and overides the dropdown filtering. 
+5. Data range picker filter bar charts and overides the dropdown filtering (Solved). 
 
 
 # Current Developments

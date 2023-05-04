@@ -18,7 +18,7 @@ def create_layout(app : Dash, data_expenses, path) -> html.Div:
     # Fortnight balance 
     card_two = dbc.Card([
         dbc.CardBody([
-            html.P('Current Fornight Balance', id='current-balance-header'),
+            html.P('Last Fornight Balance', id='current-balance-header'),
             html.P(current_fornight.render(app, data_expenses))
         ],
         style={'height': 'auto',
