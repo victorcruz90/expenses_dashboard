@@ -30,7 +30,7 @@ def main():
     app = Dash(__name__, external_stylesheets=[dbc.themes.MORPH])
     app.title = "Expenses Dashboard"
     app.layout= create_layout(app, data_expense, os.path.join(FOLDER_PROCESSED,ALL_DATA))
-    app.run(host='0.0.0.0',debug=True)
+    app.run(debug=True)
 
 
 if __name__ == "__main__":

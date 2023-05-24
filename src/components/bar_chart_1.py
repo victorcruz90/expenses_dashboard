@@ -40,7 +40,7 @@ def render(app: Dash, data: pd) -> html.Div:
             fig.update_layout( 
                 paper_bgcolor='rgba(0,0,0,0)',
                 plot_bgcolor='rgba(0,0,0,0)', 
-                bargap=0.05,
+                bargap=0.1,
                 xaxis_title_text='Fornight pay date', 
                 yaxis_title_text='Total in AUD$',
                 font_family='Arial',

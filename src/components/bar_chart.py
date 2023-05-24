@@ -10,9 +10,10 @@ def render(app: Dash, data: pd) -> html.Div:
     @app.callback(
         Output('bar-chart', 'children'),
         Input('expenses', 'data'),
-        Input('fortnight-dropdown', 'value')
+        Input('fortnight-dropdown', 'value'),
+        State('expenses', 'data')
         )
-    def update_graph(rows, fortnight_values: list):
+    def update_graph(rows, fortnight_values: list, data_state):
 
         #Grouping the data
         # data = pd.DataFrame(rows)
