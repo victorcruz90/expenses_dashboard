@@ -6,6 +6,15 @@ import dash
 
 
 def render(app: Dash, data, path):
+    @app.callback(    
+        Output('save-button', 'disabled'),
+        Input('date-range-picker', 'start_date'),
+        Input('date-range-picker', 'end_date'),
+        )
+    def set_button_enabled_state(start_date, end_date):
+            if start_date is not None:
+                return True
+            
     @app.callback(
         Output('expenses', 'data'),
         Input('save-button', 'n_clicks'),

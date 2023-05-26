@@ -38,10 +38,17 @@ The financial data that this script uses must follow a specific structure for pr
 
 5. Data range picker filter bar charts and overides the dropdown filtering (Solved). 
 
+6. When filtering data with Date ranger picker and pressing the save button it says in the original and altered database.
+
 
 # Current Developments
 
-1. add Dropdown to bar charts (DONE)
+1. Add Dropdown to bar charts (DONE)
 
 2. Aggregate both bar charts to the same card in the dashboard.
 
+3. Add dropdown for dataTable to filter the categories
+
+4. Disable save button when date range picker is called (TO SOLVE ISSUE #6)
+
+5. Update bar_chart.py when datatable is edited and saved
